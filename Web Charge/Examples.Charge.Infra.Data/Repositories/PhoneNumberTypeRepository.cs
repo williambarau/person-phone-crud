@@ -9,9 +9,9 @@ namespace Examples.Charge.Infra.Data.Repositories
 {
     public class PhoneNumberTypeRepository : IPhoneNumberTypeRepository
     {
-        private readonly ExampleContext _context;
+        private readonly PGCContext _context;
 
-        public PhoneNumberTypeRepository(ExampleContext context)
+        public PhoneNumberTypeRepository(PGCContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }

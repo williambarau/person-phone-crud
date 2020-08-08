@@ -8,7 +8,7 @@ using Examples.Charge.Infra.Data.Context;
 
 namespace Examples.Charge.Infra.Data.Configuration.Migrations
 {
-    [DbContext(typeof(ExampleContext))]
+    [DbContext(typeof(PGCContext))]
     [Migration("20200724030219_first")]
     partial class first
     {

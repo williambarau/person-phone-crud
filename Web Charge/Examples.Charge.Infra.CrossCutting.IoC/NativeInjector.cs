@@ -4,8 +4,6 @@ using Examples.Charge.Application.AutoMapper;
 using Examples.Charge.Application.Dtos;
 using Examples.Charge.Application.Facade;
 using Examples.Charge.Application.Interfaces;
-using Examples.Charge.Domain.Aggregates.ExampleAggregate;
-using Examples.Charge.Domain.Aggregates.ExampleAggregate.Interfaces;
 using Examples.Charge.Domain.Aggregates.PersonAggregate;
 using Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces;
 using Examples.Charge.Infra.Data.Repositories;
@@ -22,12 +20,9 @@ namespace Examples.Charge.Infra.CrossCutting.IoC
 
         private static void RegisterServices(IServiceCollection services)
         {
-            services.AddTransient<ExampleDto>();
+            services.AddTransient<PersonPhoneDto>();
 
-            services.AddScoped<IExampleFacade, ExampleFacade>();
-            services.AddScoped<IExampleService, ExampleService>();
-            services.AddScoped<IExampleRepository, ExampleRepository>();
-
+            services.AddScoped<IPersonPhoneFacade, PersonPhoneFacade>();
             services.AddScoped<IPersonFacade, PersonFacade>();
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IPersonRepository, PersonRepository>();
@@ -43,7 +38,7 @@ namespace Examples.Charge.Infra.CrossCutting.IoC
         {
             new MapperConfiguration(configuration =>
             {
-                configuration.AddProfile<ExampleProfile>();
+                configuration.AddProfile<PersonPhoneProfile>();
             }).CompileMappings();
         }
     }

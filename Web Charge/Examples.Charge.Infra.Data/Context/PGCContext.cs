@@ -1,25 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Examples.Charge.Domain.Aggregates.ExampleAggregate;
 using Examples.Charge.Domain.Aggregates.PersonAggregate;
 using System.Reflection;
 
 namespace Examples.Charge.Infra.Data.Context
 {
-    public class ExampleContext : DbContext
+    public class PGCContext : DbContext
     {
         public static bool firstRun = true;
 
-        public ExampleContext(DbContextOptions<ExampleContext> options) : base(options)
+        public PGCContext(DbContextOptions<PGCContext> options) : base(options)
         {
             Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(ExampleContext)));
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(PGCContext)));
         }
-
-        public DbSet<Example> Example { get; set; }
+        
         public DbSet<Person> Person { get; set; }
         public DbSet<PersonPhone> PersonPhone { get; set; }
         public DbSet<PhoneNumberType> PhoneNumberType { get; set; }

@@ -26,13 +26,20 @@ namespace Examples.Charge.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<ExampleContext>(options =>
+            services.AddDbContext<PGCContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Examples.Charge.Infra.Data.Configuration"));
             });
             NativeInjector.Setup(services);
             services.AddAutoMapper();
+
+            services.AddCors(opetions => {
+                opetions.AddPolicy(name:"localhost",
+                    builder => {
+                        builder.WithOrigins("http://localhost:4200"). AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+                    });
+            });
 
             services.AddSwaggerGen(options =>
             {
@@ -71,6 +78,8 @@ namespace Examples.Charge.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("localhost");
+
             app.UseSwagger();
 
             app.UseSwaggerUI(options =>
@@ -78,7 +87,6 @@ namespace Examples.Charge.API
                 options.SwaggerEndpoint("../swagger/v1/swagger.json", "Example Api");
                 options.DisplayRequestDuration();
             });
-
 
             app.UseMvc();
         }

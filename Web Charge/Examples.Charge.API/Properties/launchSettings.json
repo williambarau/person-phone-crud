@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "api/PersonPhone/List",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,13 +20,13 @@
     "Credit.API": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "api/PersonPhone/List",
       "applicationUrl": "http://localhost:5000"
     },
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/example",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/PersonPhone/List",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

@@ -6,8 +6,8 @@ using System.Text;
 
 namespace Examples.Charge.Application.Messages.Response
 {
-    public class ExampleListResponse: BaseResponse
+    public class PersonPhoneResponse : BaseResponse
     {
-        public List<ExampleDto> ExampleObjects { get; set; }
+        public PersonPhoneDto PersonPhone { get; set; }
     }
 }
