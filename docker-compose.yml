@@ -1,7 +1,20 @@
 version: '3.4'
 services:
+  pgc.charge.front:
+    image: ${DOCKER_REGISTRY-}pgcchargefront
+    ports: 
+      - "4200:4200"
+    build:
+      context: Web App
+      dockerfile: Dockerfile
+    depends_on:
+      - pgc.charge.api
   pgc.charge.api:
     image: ${DOCKER_REGISTRY-}pgcchargeapi
+    environment:
+      - ASPNETCORE_URLS=http://+:5000
+    ports: 
+      - "5000:5000"
     build:
       context: .
       dockerfile: Web Charge/Examples.Charge.API/Dockerfile
@@ -9,6 +22,8 @@ services:
       - db
   db:
     image: "mcr.microsoft.com/mssql/server"
+    ports: 
+      - "1433:1433"
     environment:
       SA_PASSWORD: "Master@123"
       ACCEPT_EULA: "Y"
