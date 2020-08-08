@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Person Phones
+            <i class="float-right">records({{personPhones.length}})</i></h5>
+        <div class="row">
+            <div class="col-9"></div>
+            <div class="col-3">
+                <a routerLink="create" routerLinkActive="active" class="btn btn-success btn-block">
+                    Add Person Phone
+                </a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>Business ID</td>
+                            <td>Phone Number</td>
+                            <td>Type ID</td>
+                            <td colspan="2">Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let phone of personPhones">
+                            <td>{{ phone.businessEntityID }}</td>
+                            <td>{{ phone.phoneNumber }}</td>
+                            <td>{{ phone.phoneNumberTypeID }}</td>
+                            <td><a [routerLink]="['/edit', phone.businessEntityID,phone.phoneNumber,phone.phoneNumberTypeID]"
+                                    class="btn btn-primary btn-block">Edit</a></td>
+                            <td><button
+                                    (click)="delete(phone.businessEntityID,phone.phoneNumber,phone.phoneNumberTypeID)"
+                                    class="btn btn-danger btn-block">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
